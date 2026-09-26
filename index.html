@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sip The Kick — Coffee • Food • Good Times</title>
+<meta name="description" content="Sip The Kick — a cozy cafe near New Delhi Railway Station. Explore coffee, food, shakes, desserts and more.">
+<style>
+:root{
+  --bg:#120e0a; --surface:#1d1510; --surface2:#261b14; --cream:#f8efe3;
+  --muted:#cdbdad; --gold:#d9a45b; --gold2:#f0c78d; --line:rgba(255,255,255,.10);
+  --white:#fffaf4; --green:#86a56a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(18,14,10,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.3px}
+.logo{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f0c78d,#9b6232);color:#21150c;font-size:21px;box-shadow:0 6px 20px #0006}
+.navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+.navlinks a:hover{color:var(--white)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--gold);color:#21150c}
+.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{border:1px solid var(--line);color:var(--white);background:#ffffff08}
+.hero{min-height:650px;display:grid;place-items:center;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.hero:before{width:520px;height:520px;background:radial-gradient(circle,#6e3f1c55,transparent 65%);left:-180px;top:-100px}
+.hero:after{width:700px;height:700px;background:radial-gradient(circle,#d9a45b22,transparent 65%);right:-280px;bottom:-300px}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:90px 0}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--gold2);font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.hero h1{font-family:Georgia,serif;font-size:clamp(48px,8vw,92px);line-height:.95;margin:18px 0 22px;letter-spacing:-3px}
+.hero h1 span{color:var(--gold2)}
+.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:18px}
+.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+.rating{margin-top:26px;color:var(--gold2);font-weight:800}
+.rating small{color:var(--muted);font-weight:500}
+section{padding:88px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px}
+.section-kicker{color:var(--gold2);font-size:12px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
+h2{font-family:Georgia,serif;font-size:clamp(34px,5vw,54px);margin:5px 0 0;line-height:1.05}
+.section-desc{color:var(--muted);max-width:600px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.panel{background:linear-gradient(145deg,var(--surface),#160f0b);border:1px solid var(--line);border-radius:28px;padding:30px}
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.feature{padding:18px;border-radius:18px;background:#ffffff06;border:1px solid var(--line)}
+.feature b{display:block;margin-bottom:4px}
+.feature span{color:var(--muted);font-size:14px}
+.menu-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.filter{border:1px solid var(--line);background:#ffffff05;color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700}
+.filter.active,.filter:hover{background:var(--gold);color:#21150c;border-color:var(--gold)}
+.search{width:100%;max-width:330px;background:#ffffff07;border:1px solid var(--line);border-radius:999px;padding:12px 16px;color:white;outline:none}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.menu-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.menu-card .cat{padding:14px 18px;background:linear-gradient(90deg,#2b1d14,#1b130e);border-bottom:1px solid var(--line);color:var(--gold2);font-weight:900}
+.item{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:15px 18px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item-name{font-weight:700}
+.item-note{display:block;color:#9f9185;font-size:12px;margin-top:3px}
+.price{font-weight:900;color:var(--gold2);white-space:nowrap}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px}
+.stars{color:#f4c36f;letter-spacing:2px}
+.review p{color:#eee2d6}
+.reviewer{font-weight:900;margin-top:18px}
+.meta{font-size:12px;color:#a99a8d}
+.score-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.score{font-size:12px;padding:6px 9px;background:#ffffff07;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.cta{background:linear-gradient(135deg,#2b1c12,#17100b);border:1px solid #8e643c55;border-radius:30px;padding:42px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:25px}
+.contact-card strong{display:block;font-size:12px;color:var(--gold2);text-transform:uppercase;letter-spacing:1.2px}
+.contact-card span{display:block;margin-top:8px;font-size:20px;font-weight:800}
+.demo-note{margin-top:10px;color:#b8aa9e;font-size:12px}
+footer{padding:30px 0;border-top:1px solid var(--line);color:#9f9185;font-size:13px}
+.mobile-menu{display:none}
+@media(max-width:800px){
+ .navlinks{display:none}.mobile-menu{display:inline-flex}
+ .about,.contact-grid,.menu-grid{grid-template-columns:1fr}
+ .reviews{grid-template-columns:1fr}
+ .section-head{display:block}
+ .cta{display:block}
+ .hero{min-height:580px}
+ .hero h1{letter-spacing:-2px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home"><span class="logo">☕</span><span>SIP THE KICK</span></a>
+    <nav class="navlinks">
+      <a href="#about">About</a><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary mobile-menu" href="#menu">Explore Menu</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="eyebrow">☕ Coffee • Food • Good Times</div>
+    <h1>Find your <span>perfect sip.</span></h1>
+    <p>A cozy cafe tucked near New Delhi Railway Station, serving coffee, comfort food, refreshing drinks and sweet treats in a relaxed setting.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#menu">View Full Menu</a>
+      <a class="btn btn-ghost" href="#contact">Get Directions</a>
+    </div>
+    <div class="rating">★★★★★ <small>5-star experiences shared by our guests</small></div>
+  </div>
+</section>
+
+<section id="about">
+<div class="container">
+  <div class="section-head"><div><div class="section-kicker">A little about us</div><h2>Your cozy stop in the city.</h2></div>
+  <p class="section-desc">A simple place to slow down, grab a coffee, enjoy a meal and spend time with good company.</p></div>
+  <div class="about">
+    <div class="panel">
+      <p>Guests describe Sip The Kick as a relaxing spot near New Delhi Railway Station, reached through a small street but opening into a welcoming cafe environment.</p>
+      <p>Reviews repeatedly mention fresh food, attractive presentation, friendly staff and a comfortable atmosphere—especially for an evening coffee or casual meal.</p>
+    </div>
+    <div class="panel">
+      <div class="features">
+        <div class="feature"><b>☕ Coffee & Tea</b><span>Hot and cold coffees, specialty teas and more.</span></div>
+        <div class="feature"><b>🥪 Fresh Bites</b><span>Sandwiches, wraps, burgers, pasta and salads.</span></div>
+        <div class="feature"><b>🥤 Refreshers</b><span>Smoothies, mojitos, iced teas and coolers.</span></div>
+        <div class="feature"><b>🍰 Sweet Moments</b><span>Brownies, cakes, muffins, cookies and shakes.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="menu">
+<div class="container">
+  <div class="section-head"><div><div class="section-kicker">The menu</div><h2>Something for every mood.</h2></div>
+  <p class="section-desc">Browse the complete menu from the latest menu images provided for this demo.</p></div>
+  <div class="menu-controls">
+    <input class="search" id="search" placeholder="Search the menu…">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="coffee">Coffee</button>
+    <button class="filter" data-filter="tea">Tea & Refreshers</button>
+    <button class="filter" data-filter="veg">Veg Bites</button>
+    <button class="filter" data-filter="chicken">Chicken Bites</button>
+    <button class="filter" data-filter="sweet">Desserts & Bakery</button>
+    <button class="filter" data-filter="combo">Combos</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</div>
+</section>
+
+<section id="reviews">
+<div class="container">
+  <div class="section-head"><div><div class="section-kicker">Guest experiences</div><h2>What guests are saying.</h2></div>
+  <p class="section-desc">Selected reviews supplied for the website demo.</p></div>
+  <div class="reviews">
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“Nice cafe I found nearby New Delhi railway station. The environment was awesome. The presentation was great and the staff were well behaved.”</p>
+      <div class="reviewer">Satish</div><div class="meta">4 months ago · ₹600–800 · 2 people</div>
+      <div class="score-row"><span class="score">Food 5/5</span><span class="score">Service 5/5</span><span class="score">Atmosphere 5/5</span></div>
+    </article>
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“We ate a few times here and the staff were super efficient and always friendly. Each meal we had was fresh, delicious and presented really nicely.”</p>
+      <div class="reviewer">Maddi Blades</div><div class="meta">Local Guide · 3 months ago</div>
+      <div class="score-row"><span class="score">Food 5/5</span><span class="score">Service 5/5</span><span class="score">Atmosphere 5/5</span></div>
+    </article>
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“After 8 pm we wanted a great relaxing spot near New Delhi railway station. The inside environment was awesome. We ordered the boiled chicken sandwich and mint mojito.”</p>
+      <div class="reviewer">Vijay Yadav</div><div class="meta">1 month ago · ₹600–800 · 2 people</div>
+      <div class="score-row"><span class="score">Food 5/5</span><span class="score">Service 5/5</span><span class="score">Atmosphere 5/5</span></div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="cta">
+    <div><div class="section-kicker">Come by for a cup</div><h2>Let's make your next coffee break count.</h2></div>
+    <a class="btn btn-primary" href="tel:0000000000">Call the Cafe</a>
+  </div>
+  <div class="contact-grid" style="margin-top:18px">
+    <div class="contact-card"><strong>Phone</strong><span>0000000000</span><div class="demo-note">Demo number — replace with the cafe's real number.</div></div>
+    <div class="contact-card"><strong>Location</strong><span>New Delhi Railway Station area, Paharganj, New Delhi</span><div class="demo-note">Exact address and map link can be edited by the owner.</div></div>
+    <div class="contact-card"><strong>WhatsApp</strong><span>0000000000</span><div class="demo-note">Demo number — can be connected to WhatsApp after approval.</div></div>
+    <div class="contact-card"><strong>Website editing</strong><span>Easy to update</span><div class="demo-note">Phone, menu, prices, photos, opening hours, social links and other details can be changed.</div></div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer><div class="container">© 2026 Sip The Kick · Website concept demo · Menu and review information supplied for this presentation.</div></footer>
+
+<script>
+const menus = [
+{cat:"Hot Coffees",type:"coffee",items:[
+["Ristretto / Espresso","100 / 150","Medium / Large"],["Americano","150 / 200","Medium / Large"],["Cappuccino","250 / 300","Medium / Large"],["Cafe Latte","270 / 320","Medium / Large"],["Mocha","280 / 330","Medium / Large"],["Hot Chocolate","280 / 330","Medium / Large"]
+]},
+{cat:"Cold Coffees",type:"coffee",items:[
+["Classic Frappe","250"],["Choco Frappe","275"],["Capa Chillo","260"],["Iced Americano","200"],["Iced Latte","320"]
+]},
+{cat:"Coffee Add One's",type:"coffee",items:[
+["Almond Milk / Oats Milk","90"],["Irish / Vanilla / Hazelnut","40"]
+]},
+{cat:"Hot Tea",type:"tea",items:[
+["Honey Chamomile","140","with Chamomile, Fennel, Mulethi, Brahmi"],["Tulsi Lemon Ginger","140","with Tulsi, Ginger, Lemongrass, Mulethi"],["Tulsi Green Tea Premium","140","with Green Tea, Rama Tulsi, Vana Tulsi, Krishna Tulsi"],["Turmeric Ginger","140","with Turmeric, Ginger, Cinnamon, Mulethi"],["Masala Tea with Crunchy Rusk","140","with Green Cardamom, Dry Ginger, Fennel, Basil Leaves"]
+]},
+{cat:"Ice Tea / Smoothie / Refresher",type:"tea",items:[
+["Lemon Ice Tea","190"],["Peach Ice Tea","190"],["Mango Mint Smoothie","280"],["Strawberry Mango Smoothie","280"],["Mint Mojito","250"],["Blue Ocean","220"],["Green Apple Refresher","210"],["Fresh Lime Soda","190"]
+]},
+{cat:"Veg Bites",type:"veg",items:[
+["Brown Bread Cheese Sandwich","240"],["Delicious Chutney Sandwich","260"],["Spinach Corn Mushroom Sandwich","250"],["Masala French Fries","210"],["Paneer Wrap","180"],["Protein Chana Salad","260"],["Veg. Pasta","210"],["Veg. Cheese Burger","220"]
+]},
+{cat:"Chicken Bites",type:"chicken",items:[
+["Boiled Chicken Sandwich","325"],["Chicken Mushroom Sandwich","350"],["Malai Seekh Wrap","200"],["Achari Wrap","200"],["Omelette Sandwich","210"],["Egg Rolls","210"],["Chicken Salad","300"],["Chicken Hot Dog","325"],["Pasta Chicken","275"],["Chicken Burger","325"],["Chicken Cutlet","290","6 pcs."]
+]},
+{cat:"Melting Moments",type:"sweet",items:[
+["Sizzling Brownie","290"],["Choco Truffle Cake","290"]
+]},
+{cat:"Milk Shakes",type:"sweet",items:[
+["Oreo Shake","275"],["KitKat Shake","275"],["Mango Shake","250"],["Choco Banana Shake","250"]
+]},
+{cat:"Bakery Products",type:"sweet",items:[
+["Walnut Brownie","175"],["Blueberry Muffin","175"],["Oat N Raisin Cookies","150"],["Butter Croissant","150"],["Sugar Free Date Slice","125"],["Sugar Free Fig Slice","125"]
+]},
+{cat:"Combo's",type:"combo",items:[
+["Cafe Latte & Brownie / Muffin","380"],["Cafe Latte & Butter Croissant / Oats Cookies","360"],["Cafe Latte & S.F Date Slice / S.F Fig Slice","340"],["Cafe Latte & Veg Sandwich","400"],["Refresher & Veg. Burger","340"],["Ice Tea & Veg. Sandwich","370"],["Hot Tea & Brownie / Muffin","260"],["Hot Tea & Butter Croissant / Oats Cookies","230"],["Hot Tea & S.F Date Slice / S.F Fig Slice","210"],["Hot Chocolate & Delicious Chutney Sandwich","450"],["Cafe Latte & Chicken Sandwich","520"],["Refresher & Chicken Burger","420"],["Ice Tea & Chicken Sandwich","450"],["Hot Chocolate & Chicken Cutlet","490"]
+]}
+];
+
+const grid=document.getElementById("menuGrid"), search=document.getElementById("search");
+let active="all";
+function render(){
+ const q=search.value.toLowerCase().trim();
+ grid.innerHTML="";
+ menus.filter(m=>active==="all"||m.type===active).forEach(m=>{
+   const items=m.items.filter(i=>!q || i.join(" ").toLowerCase().includes(q));
+   if(!items.length)return;
+   const card=document.createElement("div"); card.className="menu-card";
+   card.innerHTML=`<div class="cat">${m.cat}</div>`+items.map(i=>`<div class="item"><div><div class="item-name">${i[0]}</div>${i[2]?`<span class="item-note">${i[2]}</span>`:""}</div><div class="price">₹${i[1]}</div></div>`).join("");
+   grid.appendChild(card);
+ });
+}
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.filter;render();
+}));
+search.addEventListener("input",render); render();
+</script>
+</body>
+</html>
